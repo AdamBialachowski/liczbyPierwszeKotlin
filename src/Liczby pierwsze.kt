@@ -1,12 +1,9 @@
-import java.util.Scanner
-import java.io.BufferedReader
-import java.io.InputStreamReader
 
 /////functions////////////////////////////////////////////////////////////////////////////////////
-fun readNumbers(counRead: Int){//pobiera liczby do sprawdzeniea
-    for (i in 1..counRead){
-        println("podaj $i liczbę")
-        numbersToCheck.add(reader.nextInt())
+fun readNumbers(counRead: Int, arrayToCheck: IntArray){//pobiera liczby do sprawdzeniea
+    for (i in 0..(counRead-1)){
+        //numbersToCheck.add(readLine().toString().toInt())
+        arrayToCheck[i]= readLine().toString().toInt()
     }
 }
 
@@ -22,34 +19,22 @@ fun isItPrimeNumber(valueToCheck: Int):String{//funkcja sprawdza czy liczba jest
     else return "TAK"
 }
 
+fun checkAllNumbers(arrayToCheck: IntArray){//przelatuje i sprawdza wszystkie liczby czy są pierwsze
 
-
-fun checkAllNumbers(){//przelatuje i sprawdza wszystkie liczby czy są pierwsze
-//    for (i in 0..(numbersToCheck.size-1)){
-//        println(isItPrimeNumber(numbersToCheck[i]))
-//    }
-
-    for(i:Int in numbersToCheck){//for-each
+    for(i:Int in arrayToCheck){//for-each
         println(isItPrimeNumber(i))
     }
-
 }
 ////variables///////////////////////////////////////////////////////////////////////////////////////
-val numbersToCheck:ArrayList<Int> = arrayListOf<Int>()
-val reader = Scanner(System.`in`)
-//val reader = BufferedReader(InputStreamReader(System.`in`))
+//val numbersToCheck:ArrayList<Int> = arrayListOf<Int>()
 
 
 fun main(args: Array<String>){
-    println("Program sprawdza czy liczby które podasz są liczbami pierwszymi")
-    println("Podaj ile liczb chcesz wprowadzić")
 
-    val howManyTest = reader.nextInt()
-    println(howManyTest)
+    val howManyTest = readLine().toString().toInt()
+    var numbersToCheck = IntArray(howManyTest)
+    //println( howManyTest)
 
-    println("wprować $howManyTest liczb")
-
-    readNumbers(howManyTest)
-    checkAllNumbers()
-
+    readNumbers(howManyTest, numbersToCheck)
+    checkAllNumbers(numbersToCheck)
 }
